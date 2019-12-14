@@ -10,34 +10,58 @@ using UnityEngine.UI;
 
 public class FrameQualityMeter : MonoBehaviour
 {
-    public GameObject BADPannel;
-    public GameObject NORMALPannel;
-    public GameObject GOODPannel;
+
+    private Color ratingColor;
+
+    [SerializeField] private string colorString;
+
+    [SerializeField] private Image leftStarImage;
+    [SerializeField] private Image middleStarImage;
+    [SerializeField] private Image rightStarImage;
+
+
+    private void Awake()
+    {
+        SetRatingColor();
+    }
 
     public void SetQuality(Vuforia.ImageTargetBuilder.FrameQuality quality)
     {
         switch (quality)
         {
             case (Vuforia.ImageTargetBuilder.FrameQuality.FRAME_QUALITY_NONE):
-                BADPannel.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
-                NORMALPannel.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
-                GOODPannel.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
+                leftStarImage.color = Color.white;
+                middleStarImage.color = Color.white;
+                rightStarImage.color = Color.white;
                 break;
             case (Vuforia.ImageTargetBuilder.FrameQuality.FRAME_QUALITY_LOW):
-                BADPannel.GetComponent<Image>().color = new Color(1f, 0f, 0f, 1f);
-                NORMALPannel.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
-                GOODPannel.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
+                leftStarImage.color = ratingColor;
+                middleStarImage.color = Color.white;
+                rightStarImage.color = Color.white;
                 break;
             case (Vuforia.ImageTargetBuilder.FrameQuality.FRAME_QUALITY_MEDIUM):
-                BADPannel.GetComponent<Image>().color = new Color(1f, 0f, 0f, 1f);
-                NORMALPannel.GetComponent<Image>().color = new Color(1f, 1f, 0f, 1f);
-                GOODPannel.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
+                leftStarImage.color = ratingColor;
+                middleStarImage.color = ratingColor;
+                rightStarImage.color = Color.white;
                 break;
             case (Vuforia.ImageTargetBuilder.FrameQuality.FRAME_QUALITY_HIGH):
-                BADPannel.GetComponent<Image>().color = new Color(1f, 0f, 0f, 1f);
-                NORMALPannel.GetComponent<Image>().color = new Color(1f, 1f, 0f, 1f);
-                GOODPannel.GetComponent<Image>().color = new Color(0f, 1f, 0f, 1f);
+                leftStarImage.color = ratingColor;
+                middleStarImage.color = ratingColor;
+                rightStarImage.color = ratingColor;
                 break;
         }
+    }
+
+    private void SetRatingColor()
+    {
+        if (colorString == "")
+        {
+            colorString = "#fcba03";
+        }
+
+        Color color;
+        ColorUtility.TryParseHtmlString(colorString, out color);
+
+        ratingColor = color;
     }
 }
