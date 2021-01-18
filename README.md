@@ -3,6 +3,10 @@
 *以下の画像がYoutubeのデモ動画へのリンクとなっております。*
 [![AR-Beats!](iOS.png)](https://youtu.be/xaWcJDnDRgI)
 
+## 製作者
+- tyanio: 中谷　将太朗
+- kugi: 釘田　尚弥
+
 ## 製品概要
 ### Beat x Tech
 
